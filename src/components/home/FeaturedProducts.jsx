@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Star, Download, User } from 'lucide-react';
+import { ArrowRight, Star, Download } from 'lucide-react';
+
 
 const FeaturedProducts = () => {
   const products = [
@@ -9,13 +10,13 @@ const FeaturedProducts = () => {
       name: "Modern E-commerce Template",
       description: "A fully responsive e-commerce template built with React and Tailwind CSS",
       price: 49,
-      image: "/api/placeholder/400/300", // Reduced image size
+      image: "/api/placeholder/400/300",
       rating: 4.8,
       reviews: 124,
       downloads: 1542,
       author: {
         name: "Sarah Chen",
-        avatar: "/api/placeholder/32/32" // Smaller avatar
+        avatar: "/api/placeholder/32/32"
       },
       badges: ['Featured', 'Best Seller']
     },
@@ -51,45 +52,45 @@ const FeaturedProducts = () => {
     }
   ];
 
+
   return (
-    <div className="py-12 bg-white"> {/* Reduced vertical padding */}
-      <div className="container mx-auto px-4 max-w-5xl"> {/* Added max-width constraint */}
-        <div className="flex justify-between items-center mb-8"> {/* Reduced margin */}
+    <div className="py-12 bg-white">
+      <div className="container mx-auto px-4 max-w-5xl">
+        <div className="flex justify-between items-center mb-8">
           <div>
-            <h2 className="text-2xl font-bold mb-2">Featured Products</h2> {/* Smaller heading */}
-            <p className="text-gray-600 text-sm"> {/* Smaller text */}
+            <h2 className="text-2xl font-bold mb-2">Featured Products</h2>
+            <p className="text-gray-600 text-sm">
               Hand-picked premium digital products for your next project
             </p>
           </div>
-          <Link 
-            to="/products" 
-            className="group flex items-center text-blue-600 hover:text-blue-700 transition-colors text-sm" // Smaller text
+          <Link
+            to="/products"
+            className="group flex items-center text-blue-600 hover:text-blue-700 transition-colors text-sm"
           >
             <span className="font-medium">View all</span>
             <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
           </Link>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"> {/* Reduced gap */}
+       
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {products.map(product => (
-            <Link 
+            <Link
               key={product.id}
-              to={`/products/${product.id}`}
+              to={`/product/${product.id}`}
               className="group bg-white rounded-lg overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-lg hover:border-gray-200"
             >
               <div className="relative">
-                <div className="aspect-[4/3] overflow-hidden bg-gray-100"> {/* Changed aspect ratio */}
-                  <img 
-                    src={product.image} 
+                <div className="aspect-[4/3] overflow-hidden bg-gray-100">
+                  <img
+                    src={product.image}
                     alt={product.name}
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
-                
-                {/* Badges */}
-                <div className="absolute top-2 left-2 flex gap-1 flex-wrap"> {/* Reduced spacing */}
+               
+                <div className="absolute top-2 left-2 flex gap-1 flex-wrap">
                   {product.badges.map((badge, index) => (
-                    <span 
+                    <span
                       key={index}
                       className={`px-2 py-0.5 text-xs font-medium text-white rounded-full ${
                         badge === 'Featured' ? 'bg-blue-600' :
@@ -103,21 +104,22 @@ const FeaturedProducts = () => {
                     </span>
                   ))}
                 </div>
-                
-                {/* Price tag */}
-                <div className="absolute top-2 right-2 px-2 py-1 bg-white/90 backdrop-blur-sm rounded-md shadow-sm"> {/* Smaller price tag */}
+               
+                <div className="absolute top-2 right-2 px-2 py-1 bg-white/90 backdrop-blur-sm rounded-md shadow-sm">
                   <span className="font-bold text-sm text-gray-900">${product.price}</span>
                 </div>
               </div>
 
-              <div className="p-4"> {/* Reduced padding */}
-                <h3 className="text-base font-semibold mb-1 group-hover:text-blue-600 transition-colors line-clamp-1"> {/* Smaller title */}
+
+              <div className="p-4">
+                <h3 className="text-base font-semibold mb-1 group-hover:text-blue-600 transition-colors line-clamp-1">
                   {product.name}
                 </h3>
                 <p className="text-gray-600 text-sm mb-3 line-clamp-2">{product.description}</p>
 
-                <div className="flex items-center justify-between border-t border-gray-100 pt-3"> {/* Reduced spacing */}
-                  <div className="flex items-center gap-2"> {/* Reduced gap */}
+
+                <div className="flex items-center justify-between border-t border-gray-100 pt-3">
+                  <div className="flex items-center gap-2">
                     <div className="flex items-center">
                       <Star className="h-3 w-3 text-yellow-400 fill-current" />
                       <span className="ml-1 text-xs font-medium">{product.rating}</span>
@@ -128,12 +130,12 @@ const FeaturedProducts = () => {
                       <span className="ml-1 text-xs">{product.downloads.toLocaleString()}</span>
                     </div>
                   </div>
-                  
+                 
                   <div className="flex items-center">
                     <img
                       src={product.author.avatar}
                       alt={product.author.name}
-                      className="h-6 w-6 rounded-full border-2 border-white shadow-sm" // Smaller avatar
+                      className="h-6 w-6 rounded-full border-2 border-white shadow-sm"
                     />
                     <div className="ml-2">
                       <p className="text-xs font-medium text-gray-900">{product.author.name}</p>
@@ -146,11 +148,11 @@ const FeaturedProducts = () => {
           ))}
         </div>
 
-        {/* Bottom CTA - Made optional, comment out if not needed */}
-        <div className="mt-8 text-center"> {/* Reduced margin */}
+
+        <div className="mt-8 text-center">
           <Link
             to="/products"
-            className="inline-flex items-center px-4 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-300" // Smaller button
+            className="inline-flex items-center px-4 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-300"
           >
             Explore All Products
             <ArrowRight className="ml-2 h-4 w-4" />
@@ -160,5 +162,6 @@ const FeaturedProducts = () => {
     </div>
   );
 };
+
 
 export default FeaturedProducts;

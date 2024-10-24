@@ -87,7 +87,7 @@ const SectionErrorBoundary = ({ children }) => (
 
 // HomePage Component with error boundaries and suspense for each section
 const HomePage = () => (
-  <div className="space-y-8">
+  <div className="space-y">
     <SectionErrorBoundary>
       <Suspense fallback={<ComponentLoader />}>
         <Hero />

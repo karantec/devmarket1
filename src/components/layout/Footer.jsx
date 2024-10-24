@@ -12,7 +12,7 @@ const Footer = () => {
               Your premier marketplace for digital solutions, connecting developers with businesses.
             </p>
           </div>
-          
+
           <div>
             <h3 className="text-lg font-semibold mb-4">For Buyers</h3>
             <ul className="space-y-2">
@@ -21,7 +21,7 @@ const Footer = () => {
               <li><Link to="/support" className="text-gray-600 hover:text-blue-600">Support</Link></li>
             </ul>
           </div>
-          
+
           <div>
             <h3 className="text-lg font-semibold mb-4">For Sellers</h3>
             <ul className="space-y-2">
@@ -30,7 +30,7 @@ const Footer = () => {
               <li><Link to="/seller-tools" className="text-gray-600 hover:text-blue-600">Seller Tools</Link></li>
             </ul>
           </div>
-          
+
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <ul className="space-y-2">
@@ -40,7 +40,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        
+
         <div className="border-t mt-8 pt-8 text-center text-gray-600">
           <p>© 2024 DevMarket. All rights reserved.</p>
         </div>
@@ -48,6 +48,5 @@ const Footer = () => {
     </footer>
   );
 };
-
 
 export default Footer;

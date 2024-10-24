@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { CartProvider } from './context and hooks/CartContext';
 import { ThemeProvider } from './context and hooks/ThemeContext';
 import { AuthProvider } from './context and hooks/AuthContext';
+import { useCart } from './context and hooks/usecart';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -12,8 +13,11 @@ import LoadingSpinner from './components/common/LoadingSpinner';
 import ErrorBoundary from './components/common/ErrorBoundary';
 import PrivateRoute from './components/PrivateRoute';
 import AuthGuard from './context and hooks/AuthGuard';
+import Button from './components/common/Button';
+import Card from './components/common/Card';
+import Input from './components/common/Input';
 
-// Lazy load all pages and major components for better performance
+// Lazy load all pages
 const Home = lazy(() => import('./pages/Home'));
 const Products = lazy(() => import('./pages/Products'));
 const ProductDetail = lazy(() => import('./pages/ProductDetail'));
@@ -26,12 +30,19 @@ const Login = lazy(() => import('./pages/Login'));
 const Register = lazy(() => import('./pages/Register'));
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword'));
 
-
 // Lazy load homepage sections
+const Hero = lazy(() => import('./components/home/Hero'));
+const Categories = lazy(() => import('./components/home/Categories'));
+const FeaturedProducts = lazy(() => import('./components/home/FeaturedProducts'));
 const Testimonials = lazy(() => import('./components/home/Testimonials'));
 const HowItWorks = lazy(() => import('./components/home/HowItWorks'));
 const NewsletterSignup = lazy(() => import('./components/home/NewsLetterSignup'));
 const CallToAction = lazy(() => import('./components/home/CallToAction'));
+
+// Lazy load product components
+const ProductCard = lazy(() => import('./components/product/ProductCard'));
+const ProductGrid = lazy(() => import('./components/product/ProductGrid'));
+const ProductSort = lazy(() => import('./components/product/ProductSort'));
 
 // Loading fallback components
 const PageLoader = () => (
@@ -47,42 +58,89 @@ const ComponentLoader = () => (
 );
 
 // Error Fallback Component
-const ErrorFallback = ({ error }) => (
+const ErrorFallback = ({ error, resetErrorBoundary }) => (
   <div className="flex flex-col items-center justify-center min-h-screen p-4">
     <h2 className="text-2xl font-bold text-red-600 mb-4">Oops! Something went wrong</h2>
     <p className="text-gray-600 mb-4">{error.message}</p>
-    <button 
-      onClick={() => window.location.reload()}
+    <Button 
+      onClick={resetErrorBoundary}
       className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
     >
-      Reload Page
-    </button>
+      Try Again
+    </Button>
   </div>
 );
 
-// HomePage Component with Suspense boundaries for each section
-const HomePage = () => (
-  <>
-    <Suspense fallback={<ComponentLoader />}>
-      <HowItWorks />
-    </Suspense>
-    
-    <Suspense fallback={<ComponentLoader />}>
-      <Testimonials />
-    </Suspense>
-    
-    <Suspense fallback={<ComponentLoader />}>
-      <NewsletterSignup />
-    </Suspense>
-    
-    <Suspense fallback={<ComponentLoader />}>
-      <CallToAction />
-    </Suspense>
-  </>
+// Section Error Boundary Component
+const SectionErrorBoundary = ({ children }) => (
+  <ErrorBoundary
+    FallbackComponent={({ error, resetErrorBoundary }) => (
+      <Card className="m-4 p-4">
+        <p className="text-red-600">Failed to load this section: {error.message}</p>
+        <Button onClick={resetErrorBoundary}>Retry</Button>
+      </Card>
+    )}
+  >
+    {children}
+  </ErrorBoundary>
 );
 
+// HomePage Component with error boundaries and suspense for each section
+const HomePage = () => (
+  <div className="space-y-8">
+    <SectionErrorBoundary>
+      <Suspense fallback={<ComponentLoader />}>
+        <Hero />
+      </Suspense>
+    </SectionErrorBoundary>
 
+    <SectionErrorBoundary>
+      <Suspense fallback={<ComponentLoader />}>
+        <Categories />
+      </Suspense>
+    </SectionErrorBoundary>
 
+    <SectionErrorBoundary>
+      <Suspense fallback={<ComponentLoader />}>
+        <FeaturedProducts />
+      </Suspense>
+    </SectionErrorBoundary>
+    
+    <SectionErrorBoundary>
+      <Suspense fallback={<ComponentLoader />}>
+        <HowItWorks />
+      </Suspense>
+    </SectionErrorBoundary>
+    
+    <SectionErrorBoundary>
+      <Suspense fallback={<ComponentLoader />}>
+        <Testimonials />
+      </Suspense>
+    </SectionErrorBoundary>
+    
+    <SectionErrorBoundary>
+      <Suspense fallback={<ComponentLoader />}>
+        <NewsletterSignup />
+      </Suspense>
+    </SectionErrorBoundary>
+    
+    <SectionErrorBoundary>
+      <Suspense fallback={<ComponentLoader />}>
+        <CallToAction />
+      </Suspense>
+    </SectionErrorBoundary>
+  </div>
+);
+
+// Products Page with its components
+const ProductsPage = () => (
+  <div className="container mx-auto px-4">
+    <ProductSort />
+    <ProductGrid />
+  </div>
+);
+
+// Main App Component
 const App = () => {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
@@ -95,10 +153,10 @@ const App = () => {
                   <Routes>
                     {/* Public Routes */}
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/products" element={<Products />} />
+                    <Route path="/products" element={<ProductsPage />} />
                     <Route path="/product/:id" element={<ProductDetail />} />
-                    <Route path="/search" element={<Products />} />
-                    <Route path="/category/:category" element={<Products />} />
+                    <Route path="/search" element={<ProductsPage />} />
+                    <Route path="/category/:category" element={<ProductsPage />} />
                     
                     {/* Authentication Routes */}
                     <Route

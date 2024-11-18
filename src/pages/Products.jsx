@@ -66,7 +66,7 @@ const sortOptions = {
   rating: { label: 'Highest Rated', key: 'rating' }
 };
 
-const Products = () => {
+const Productivity = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -250,4 +250,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Productivity;

@@ -16,6 +16,7 @@ import AuthGuard from './context and hooks/AuthGuard';
 import Button from './components/common/Button';
 import Card from './components/common/Card';
 import Input from './components/common/Input';
+import Productivity from './pages/Products';
 
 // Lazy load all pages
 const Home = lazy(() => import('./pages/Home'));
@@ -153,7 +154,7 @@ const App = () => {
                   <Routes>
                     {/* Public Routes */}
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/products" element={<ProductsPage />} />
+                    <Route path="/products" element={<Productivity/>} />
                     <Route path="/product/:id" element={<ProductDetail />} />
                     <Route path="/search" element={<ProductsPage />} />
                     <Route path="/category/:category" element={<ProductsPage />} />

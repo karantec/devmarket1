@@ -17,19 +17,22 @@ import Button from './components/common/Button';
 import Card from './components/common/Card';
 import Input from './components/common/Input';
 import Productivity from './pages/Products';
-
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout"
 // Lazy load all pages
 const Home = lazy(() => import('./pages/Home'));
 const Products = lazy(() => import('./pages/Products'));
 const ProductDetail = lazy(() => import('./pages/ProductDetail'));
-const Cart = lazy(() => import('./pages/Cart'));
+
 const NotFound = lazy(() => import('./pages/NotFound'));
-const Checkout = lazy(() => import('./pages/Checkout'));
+
 const OrderSuccess = lazy(() => import('./pages/OrderSuccess'));
 const Profile = lazy(() => import('./pages/Profile'));
 const Login = lazy(() => import('./pages/Login'));
 const Register = lazy(() => import('./pages/Register'));
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword'));
+// const CartPage=lazy(() => import('./pages/Cart'));
+// const CheckoutPage=lazy(() => import('./pages/Checkout'));
 
 // Lazy load homepage sections
 const Hero = lazy(() => import('./components/home/Hero'));
@@ -158,7 +161,8 @@ const App = () => {
                     <Route path="/product/:id" element={<ProductDetail />} />
                     <Route path="/search" element={<ProductsPage />} />
                     <Route path="/category/:category" element={<ProductsPage />} />
-                    
+                    <Route path="/cart"   element={<Cart/>}/>
+                    <Route path="/checkout"   element={<Checkout/>}/>
                     {/* Authentication Routes */}
                     <Route
                       path="/login"

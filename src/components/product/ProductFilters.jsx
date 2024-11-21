@@ -4,12 +4,11 @@ import { Check } from 'lucide-react';
 
 const ProductFilters = ({ filters, setFilters }) => {
   const categories = [
-    'Landing Pages',
-    'Software Solutions',
-    'Website Templates',
-    'Components',
-    'Scripts & Tools',
-    'Starter Kits'
+    "Landing Pages",
+    "Website Templates",
+    "Components",
+    "Scripts & Tools",
+    "Starter Kits"
   ];
 
   const priceRanges = [

@@ -1,4 +1,3 @@
-// src/components/layout/Navbar.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, ShoppingCart, User, Menu, X } from 'lucide-react';
@@ -35,24 +34,22 @@ const Navbar = () => {
 
             {/* Navigation Links */}
             <div className="flex items-center space-x-6">
-              <Link 
-                to="/products" 
+              <Link
+                to="/products"
                 className="text-gray-700 hover:text-primary-600 font-medium"
               >
                 Products
               </Link>
-              <Link 
-                to="/sell" 
-                className="btn-primary"
-              >
+              <Link to="/sell" className="btn-primary">
                 Start Selling
               </Link>
-              <button className="p-2 text-gray-600 hover:text-primary-600 relative">
+              {/* Link to Cart Page */}
+              <Link to="/cart" className="p-2 text-gray-600 hover:text-primary-600 relative">
                 <ShoppingCart className="h-6 w-6" />
                 <span className="absolute -top-1 -right-1 bg-primary-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
                   0
                 </span>
-              </button>
+              </Link>
               <button className="p-2 text-gray-600 hover:text-primary-600">
                 <User className="h-6 w-6" />
               </button>

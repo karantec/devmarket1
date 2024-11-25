@@ -19,6 +19,7 @@ import Input from './components/common/Input';
 import Productivity from './pages/Products';
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout"
+
 // Lazy load all pages
 const Home = lazy(() => import('./pages/Home'));
 const Products = lazy(() => import('./pages/Products'));
@@ -31,6 +32,10 @@ const Profile = lazy(() => import('./pages/Profile'));
 const Login = lazy(() => import('./pages/Login'));
 const Register = lazy(() => import('./pages/Register'));
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword'));
+const Sell = lazy(() => import('./pages/Sell'));
+const Contact = lazy(() => import('./pages/Contact'));
+const FAQ = lazy(() => import('./pages/FAQ'));
+const SellerGuide = lazy(() => import('./pages/SellerGuide'));
 // const CartPage=lazy(() => import('./pages/Cart'));
 // const CheckoutPage=lazy(() => import('./pages/Checkout'));
 
@@ -159,10 +164,15 @@ const App = () => {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/products" element={<Productivity/>} />
                     <Route path="/product/:id" element={<ProductDetail />} />
+                    <Route path="/sell" element={<Sell/>}/>
                     <Route path="/search" element={<ProductsPage />} />
                     <Route path="/category/:category" element={<ProductsPage />} />
                     <Route path="/cart"   element={<Cart/>}/>
                     <Route path="/checkout"   element={<Checkout/>}/>
+                    <Route path="/contact" element={<Contact/>}/>
+                    <Route path="/faq" element={<FAQ/>}/>
+                    <Route path="/SellerGuide" element={<SellerGuide/>}/>
+
                     {/* Authentication Routes */}
                     <Route
                       path="/login"

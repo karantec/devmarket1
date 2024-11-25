@@ -26,7 +26,7 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">For Sellers</h3>
             <ul className="space-y-2">
               <li><Link to="/sell" className="text-gray-600 hover:text-blue-600">Start Selling</Link></li>
-              <li><Link to="/seller-guide" className="text-gray-600 hover:text-blue-600">Seller Guide</Link></li>
+              <li><Link to="/SellerGuide" className="text-gray-600 hover:text-blue-600">Seller Guide</Link></li>
               <li><Link to="/seller-tools" className="text-gray-600 hover:text-blue-600">Seller Tools</Link></li>
             </ul>
           </div>
@@ -35,8 +35,8 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <ul className="space-y-2">
               <li><a href="mailto:support@devmarket.com" className="text-gray-600 hover:text-blue-600">support@devmarket.com</a></li>
-              <li><Link to="/contact" className="text-gray-600 hover:text-blue-600">Contact Form</Link></li>
-              <li><Link to="/faq" className="text-gray-600 hover:text-blue-600">FAQ</Link></li>
+              <li><Link to="/Contact" className="text-gray-600 hover:text-blue-600">Contact Form</Link></li>
+              <li><Link to="/FAQ" className="text-gray-600 hover:text-blue-600">FAQ</Link></li>
             </ul>
           </div>
         </div>

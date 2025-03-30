@@ -7,6 +7,7 @@ const EcommerceGrid = () => {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(8);
+  const [filters, setFilters] = useState({ category: '', name: '', minPrice: '', maxPrice: '' });
 
   const fetchProducts = async () => {
     try {
@@ -31,16 +32,37 @@ const EcommerceGrid = () => {
     fetchProducts();
   }, []);
 
+  const handleFilterChange = (e) => {
+    setFilters({ ...filters, [e.target.name]: e.target.value });
+  };
+
+  const filteredProducts = products.filter((product) => {
+    const matchesCategory = filters.category ? product.category.toLowerCase().includes(filters.category.toLowerCase()) : true;
+    const matchesName = filters.name ? product.name.toLowerCase().includes(filters.name.toLowerCase()) : true;
+    const matchesPrice =
+      (filters.minPrice === '' || product.price >= Number(filters.minPrice)) &&
+      (filters.maxPrice === '' || product.price <= Number(filters.maxPrice));
+
+    return matchesCategory && matchesName && matchesPrice;
+  });
+
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
   const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
-  const totalPages = Math.ceil(products.length / productsPerPage);
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
   return (
     <div className="container mx-auto px-4 mt-10 mb-10 flex">
-      <div className="w-3/4 mx-auto">
+      <div className="w-1/4 bg-gray-100 p-6 rounded-lg mr-6">
+        <h2 className="text-xl font-semibold mb-4">Filters</h2>
+        <input type="text" name="name" placeholder="Search by name" className="w-full p-2 mb-4 border" onChange={handleFilterChange} />
+        <input type="text" name="category" placeholder="Search by category" className="w-full p-2 mb-4 border" onChange={handleFilterChange} />
+        <input type="number" name="minPrice" placeholder="Min Price" className="w-full p-2 mb-4 border" onChange={handleFilterChange} />
+        <input type="number" name="maxPrice" placeholder="Max Price" className="w-full p-2 mb-4 border" onChange={handleFilterChange} />
+      </div>
+      <div className="w-3/4">
         {loading && <p>Loading...</p>}
         {error && <p className="text-red-500">Error: {error}</p>}
         {currentProducts.length > 0 ? (

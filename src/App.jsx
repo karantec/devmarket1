@@ -23,7 +23,6 @@ import Checkout from "./pages/Checkout"
 // Lazy load all pages
 const Home = lazy(() => import('./pages/Home'));
 const Products = lazy(() => import('./pages/Products'));
-const ProductDetail = lazy(() => import('./pages/ProductDetail'));
 
 const NotFound = lazy(() => import('./pages/NotFound'));
 
@@ -163,7 +162,6 @@ const App = () => {
                     {/* Public Routes */}
                     <Route path="/" element={<HomePage />} />
                     <Route path="/products" element={<Productivity/>} />
-                    <Route path="/product/:id" element={<ProductDetail />} />
                     <Route path="/sell" element={<Sell/>}/>
                     <Route path="/search" element={<ProductsPage />} />
                     <Route path="/category/:category" element={<ProductsPage />} />
